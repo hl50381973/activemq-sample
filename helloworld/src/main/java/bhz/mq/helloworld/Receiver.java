@@ -12,13 +12,16 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class Receiver {
 	public static void main(String[] args) throws Exception {
-		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnectionFactory.DEFAULT_USER,
-				ActiveMQConnectionFactory.DEFAULT_PASSWORD, "tcp://localhost:61616");
+		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
+				ActiveMQConnectionFactory.DEFAULT_USER,
+				ActiveMQConnectionFactory.DEFAULT_PASSWORD, 
+				"tcp://localhost:61616");
+		
 		Connection connection = connectionFactory.createConnection();
 		connection.start();
 
 		Session session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);
-		// 第
+
 		Destination desi = session.createQueue("queue1");
 
 		MessageConsumer messageConsumer = session.createConsumer(desi);
